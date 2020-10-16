@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['test']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+ 
+dependencies {
+	testCompile(
+        'com.github.stefanbirkner:system-rules:1.19.0',
+        'junit:junit:4.13'
+	)
+}

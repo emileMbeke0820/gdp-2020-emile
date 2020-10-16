@@ -1,0 +1,18 @@
+*.iml
+*.iws
+*.ipr
+.idea
+
+# ignore Idea shelf stuff
+.shelf
+
+*.DS_Store
+
+.gradle
+
+out
+tmp
+
+**/build
+
+classes
