@@ -8,52 +8,15 @@ public class Ueb04 {
     private static int counter = 0;
 
     public static void main(String[] args) {
-        menu();
+        ProgrammEnde();
 
     }
 
-    public static void menu() {
-
-        System.out.println("A) Satz eingeben \n" +
-                "B) Anzahl Leerzeichen bestimmen \n" +
-                "C) 1. und letztes Wort vertauschen \n" +
-                "D) Alle Vokale entfernen \n" +
-                "X) Ende");
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Bitte ein Menü auswählen: ");
-        char eingabeMenu = scanner.nextLine().charAt(0);
 
 
-        switch (eingabeMenu) {
-            case 'A':
-                System.out.println("Bitte einen Satz eingeben:");
-                String satz = scanner.next();
-                System.out.println(satz);
-                break;
-            case 'B':
-                System.out.println(anzahlLeerzeichen());
-                break;
-            case 'C':
-                vertausche();
-                break;
-            case 'D':
-                entferneVokal( "Hallo Opa, ich habe Emil angerufen");
-                break;
-            case 'X':
-                System.out.println("Ende");
-                break;
-            default:
-                System.out.println("Falsche Eingabe.");
-                break;
+    public static int anzahlLeerzeichen(String satz) {
 
-        }
-        scanner.close();
-    }
 
-    public static int anzahlLeerzeichen() {
-
-        String satz = "ja va is a prog langu age ";
         for (int i = 0; i < satz.length(); i++) {
 
             if (satz.charAt(i) == ' ') {
@@ -64,31 +27,39 @@ public class Ueb04 {
         return counter;
     }
 
-    public static void vertausche() {
-        String satz = "Nachts ist kälter als draußen my friends";
-
+    public static void vertausche(String text ) {
+        /*String satz = "Nachts ist kälter als draußen my friends";
         String[] ch = satz.split(" ");
-
-
         String temp = ch[0];
         ch[0] = ch[ch.length - 1];
         ch[ch.length - 1] = temp;
-
-
         for (String s : ch) {
             System.out.print(s + " ");
-        }
+        }*/
+
+
+        text = text.trim();
+        String first = text.substring(0, text.indexOf(" "));
+        String last = text.substring(text.lastIndexOf(" "));
+        String temp;
+
+        temp = first;
+        first = last;
+        last = temp;
+        String result = first + text.substring(text.indexOf(" "), text.lastIndexOf(" ") + 1) + last;
+        System.out.println(result.trim());
 
 
     }
-    public static void entferneVokal(String s){
 
+    public static void entferneVokal(String s) {
 
+        s = s.toLowerCase();
 
-        for(int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); i++) {
 
             char c = s.charAt(i);
-            if(c == 'a' || c == 'o' || c == 'u' || c == 'e'){
+            if (c == 'a' || c == 'o' || c == 'u' || c == 'e') {
                 s = s.replace(c, '\000');
 
 
@@ -96,6 +67,44 @@ public class Ueb04 {
         }
         System.out.println(s);
     }
+
+    public static void ProgrammEnde() {
+        Scanner scan = new Scanner(System.in);
+        char eingabe;
+        do {
+            System.out.println("Bitte ein Menü auswählen: ");
+            System.out.println("A) Satz eingeben \n" + "B) Anzahl Leerzeichen bestimmen \n"
+                    + "C) 1. und letztes Wort vertauschen \n" + "D) Alle Vokale entfernen \n" + "X) Ende");
+            eingabe = scan.next().charAt(0);
+
+
+            switch(eingabe) {
+                case 'A':
+                    System.out.println("Bitte einen Text eingeben: ");
+                    String text;
+                    break;
+                case 'B':
+                    System.out.println("Bitte einen Text eingeben: ");
+                     text = scan.next();
+                   System.out.println(anzahlLeerzeichen(text));
+                    break;
+                case 'C':
+                    System.out.println("Bitte einen Zahl eingeben: ");
+                    text = scan.next();
+                    vertausche(text);
+                    break;
+                case 'D':
+                    System.out.println("Bitte einen Zahl eingeben: ");
+                    text = scan.next();
+                    entferneVokal(text);
+                    break;
+            }
+
+
+        } while (eingabe != 'X');
+
+    }
+
 }
 
 
