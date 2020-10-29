@@ -18,7 +18,8 @@ repositories {
 }
  
 dependencies {
-	testCompile(
+	implementation 'org.jetbrains:annotations:19.0.0'
+    testCompile(
         'com.github.stefanbirkner:system-rules:1.19.0',
         'junit:junit:4.13'
 	)
