@@ -55,11 +55,15 @@ public class Ueb05 {
             double durchschnittPreis = durchschnitt(benzinPreis);
             double spanne = groessterPreis - kleinsterPreis;
 
-            System.out.format(Locale.US,"Anzahl Preise: %2d%n", eingaben);
+            System.out.format(Locale.US,"Anzahl Preise: %3d%n", maxlaenge);
+
             System.out.format(Locale.US,"Kleinster Preis: %2.2f%n", kleinsterPreis);
+
             System.out.format(Locale.US,"Groesster Preis: %2.2f%n", groessterPreis); //Ergebnis print
-            System.out.format(Locale.US,"Mittelwert: %2.2f%n", durchschnittPreis);
-            System.out.format(Locale.US, "Spanne: %2.2f", spanne);
+
+            System.out.format(Locale.US,"Mittelwert: %9.2f%n", durchschnittPreis);
+
+            System.out.format(Locale.US,"Spanne: %13.2f", spanne);
         }
         else {
             System.out.println("Es wurde kein Preis eingegeben!");
@@ -73,10 +77,10 @@ public class Ueb05 {
 
         double zahl1 = preise[0];
 
-        for (int i = 0; i < preise.length; i++) {
-            double temp = 0;
-            temp = preise[i];
-            if((temp < zahl1) && (temp >= 1) ){
+        for (double v : preise) {
+            double temp;
+            temp = v;
+            if ((temp < zahl1) && (temp >= 1)) {
                 zahl1 = temp;
             }
 
@@ -88,10 +92,10 @@ public class Ueb05 {
 
         double zahl1 = preise[0];
 
-        for (int i = 0; i < preise.length; i++) {
-            double temp = 0;
-            temp = preise[i];
-            if(temp > zahl1 ){
+        for (double v : preise) {
+            double temp;
+            temp = v;
+            if (temp > zahl1) {
                 zahl1 = temp;
             }
 
@@ -102,10 +106,10 @@ public class Ueb05 {
 
         double gesamt = 0;
         int anzahl = 0;
-        for (int i = 0; i < preise.length ; i++) {
-            gesamt += preise[i];
+        for (double v : preise) {
+            gesamt += v;
 
-            if(preise[i] >= 1){
+            if (v >= 1) {
                 anzahl++;
             }
         }
