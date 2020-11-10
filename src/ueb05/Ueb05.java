@@ -10,6 +10,8 @@ public class Ueb05 {
 
     public static void main(String[] args) {
 
+
+
         Scanner scan = new Scanner(System.in);
         int eingaben = 0;
         if(args.length == 0 || args[0] == null || args[0].equals("0")){
@@ -50,20 +52,15 @@ public class Ueb05 {
 
         if(eingaben != 0){
 
-            double kleinsterPreis = kleinsterPreis(benzinPreis);
-            double groessterPreis = groesterPreis(benzinPreis);
+
+
             double durchschnittPreis = durchschnitt(benzinPreis);
-            double spanne = groessterPreis - kleinsterPreis;
-
             System.out.format(Locale.US,"Anzahl Preise: %3d%n", maxlaenge);
-
-            System.out.format(Locale.US,"Kleinster Preis: %2.2f%n", kleinsterPreis);
-
-            System.out.format(Locale.US,"Groesster Preis: %2.2f%n", groessterPreis); //Ergebnis print
-
+            RechnePreis(benzinPreis);
+            System.out.println();
             System.out.format(Locale.US,"Mittelwert: %9.2f%n", durchschnittPreis);
 
-            System.out.format(Locale.US,"Spanne: %13.2f", spanne);
+
         }
         else {
             System.out.println("Es wurde kein Preis eingegeben!");
@@ -72,25 +69,11 @@ public class Ueb05 {
 
     }
 
-    public static double  kleinsterPreis(double [] preise) {
+    public static void  RechnePreis(double [] preise) {
 
 
         double zahl1 = preise[0];
-
-        for (double v : preise) {
-            double temp;
-            temp = v;
-            if ((temp < zahl1) && (temp >= 1)) {
-                zahl1 = temp;
-            }
-
-        }
-        return zahl1;
-    }
-    public static double  groesterPreis(double [] preise) {
-
-
-        double zahl1 = preise[0];
+        double zahl2 = preise[0];
 
         for (double v : preise) {
             double temp;
@@ -98,9 +81,18 @@ public class Ueb05 {
             if (temp > zahl1) {
                 zahl1 = temp;
             }
+            if(temp < zahl2){
+                zahl2 = temp;
+            }
 
         }
-        return zahl1;
+        double  kleinsterPreis = zahl2;
+        double groessterPreis = zahl1;
+        double spanne = groessterPreis - kleinsterPreis;
+        System.out.format(Locale.US,"Kleinster Preis: %2.2f%n", kleinsterPreis);
+        System.out.format(Locale.US,"Groesster Preis: %2.2f%n", groessterPreis);
+        System.out.format(Locale.US,"Spanne: %13.2f", spanne);
+
     }
     public static double durchschnitt(double[] preise){
 

@@ -30,12 +30,18 @@ public class Ueb04 {
         text = text.trim();
         String first = text.substring(0, text.indexOf(" "));
         String last = text.substring(text.lastIndexOf(" "));
+        String average = text.substring(text.indexOf(" "), text.lastIndexOf(" ") + 1);
         String temp;
         temp = first;
         first = last;
         last = temp;
-        String result = first + text.substring(text.indexOf(" "), text.lastIndexOf(" ") + 1) + last;
+        String result = first + average + last;
         System.out.println(result.trim());
+
+        String a = "  text    ";
+         String b = a.trim();
+        System.out.println("Länge a " + a.length());
+        System.out.println("Länge b " + b.length());
 
     }
     public static void removeVowels(String s) {
