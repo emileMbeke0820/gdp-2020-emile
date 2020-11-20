@@ -220,7 +220,7 @@ public class Ueb07 {
 
     public static void printErrorAndExit() {
         System.out.println("Es wurde keine gueltige Array-Laenge uebergeben!");
-        System.exit(1);
+        System.exit(0);
     }
 
     public static int getArrayLengthFromArgs(String args) {
@@ -236,7 +236,7 @@ public class Ueb07 {
         return size;
     }
 
-    public static int getStrings(String[] userInput, int size, Scanner scanner){
+    public static void getStrings(String[] userInput, int size, Scanner scanner){
         int counter = 0;
         while (counter < size){
             String input = scanner.nextLine();
@@ -245,18 +245,12 @@ public class Ueb07 {
                 counter++;
             }
             else{
-                return counter;
+                return;
             }
         }
-        return counter;
     }
     public static boolean exit(String input){
-        if(input.toUpperCase().equals("X")){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return input.toUpperCase().equals("X");
     }
     public static void shiftDigits(String input, int number){
         StringBuilder newOne = new StringBuilder();
@@ -285,7 +279,7 @@ public class Ueb07 {
                 newOne.append((char) (c - 32));
                 changes++;
             } else{
-                newOne.append((char) (c));
+                newOne.append(c);
             }
             counter++;
         }
@@ -307,7 +301,7 @@ public class Ueb07 {
         int counter = 0;
         while(counter < input.length()) {
             char c = input.charAt(counter);
-            if ((int) c > 47 && (int) c < 58) {
+            if (( c >= '0' &&  c <= '9')) {
                 return true;
             }
             counter++;
@@ -318,6 +312,7 @@ public class Ueb07 {
         int counter = 0;
         while(counter < input.length()) {
             char c = input.charAt(counter);
+
             if ((int) c > 64 && (int) c < 91) {
                 return true;
             }
