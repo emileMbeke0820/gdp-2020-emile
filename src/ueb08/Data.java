@@ -25,13 +25,14 @@ public class Data {
      * Die zweite Dimension beschreibt einen Wähler.
      * Jeder Wähler kann mehrfach eine Stimme abgegeben haben, der erstgenannte 
      * Kandidat ist hierbei die Erstwahl.
-     * 
+     *
      * Der Zugriff auf votes[0][0][0] liefert den bevorzugten Kandidaten
      * des ersten Wählers in der ersten Wahl. votes[0][0][1] würde die Zweitwahl
      * des ersten Wählers in der ersten Wahl liefern.
-     * 
+     *
      * Die vorhandenen Daten werden im Folgenden aufgeführt:
      */
+    // VOTES[1][2][1] =
     private static final int[][][] VOTES = {
             {
                     // 0) Niemand hat gewählt.
@@ -53,13 +54,13 @@ public class Data {
                     // 4) Die Stimmen sind initial aufgeteilt zwischen Kandidat 3 und 4,
                     //    aber die Personen, die für Kandidat 2 gestimmt haben, bevorzugen 4.
                     //
-                    //    Dies ist die erste Wahl in der unterschiedliche 
-                    //    Auswertungsvarianten zu unterschiedlichen Ergebnissen führen. 
+                    //    Dies ist die erste Wahl in der unterschiedliche
+                    //    Auswertungsvarianten zu unterschiedlichen Ergebnissen führen.
                     {3}, {3}, {3}, {3}, {3}, {4}, {4}, {4}, {4}, {4}, {2, 4}, {2, 4}
             },
             {
                     // 5) Jeder möchte Kandidat 1 in der Zweitwahl, die Erstwahlen
-                    //    sind aber über alle Kandidaten verteilt. 
+                    //    sind aber über alle Kandidaten verteilt.
                     {0, 1}, {2, 1}, {3, 1}, {4, 1}, {2, 1}, {3, 1}, {4, 1}, {3, 1}, {4, 1}, {4, 1},
             },
             {
@@ -79,7 +80,7 @@ public class Data {
      * @todo implementieren
      */
     public static int getNumberOfCandidates() {
-        return 0;
+        return CANDIDATES.length;
     }
 
     /**
@@ -87,7 +88,7 @@ public class Data {
      * @todo implementieren
      */
     public static int getNumberOfElections() {
-        return 0;
+        return VOTES.length;
     }
 
     /**
@@ -96,7 +97,7 @@ public class Data {
      * @todo implementieren
      */
     public static boolean isValidCandidateId(int candidateId) {
-        return false;
+        return getNumberOfCandidates() > candidateId && candidateId >= 0;
     }
 
     /**
@@ -105,11 +106,11 @@ public class Data {
      * @todo implementieren
      */
     public static boolean isValidElectionId(int electionId) {
-        return false;
+        return getNumberOfElections() > electionId && electionId >= 0;
     }
 
     /**
-     * Liefert den Namen des zu der ID gehörigen Kandidaten. Wenn der 
+     * Liefert den Namen des zu der ID gehörigen Kandidaten. Wenn der
      * korrespondierende Kandidat nicht existiert, wird null zurückgegeben.
      *
      * @param candidateId Die ID des Kandidaten.
@@ -117,23 +118,43 @@ public class Data {
      * @todo implementieren
      */
     public static String getCandidateNameById(int candidateId) {
-        return null;
+        return isValidCandidateId(candidateId) ? CANDIDATES[candidateId] : null;
+        //if(isValidCandidateId(candidateId))
+        //{
+        //    return CANDIDATES[candidateId];
+        //}
+        //return null;
     }
 
     /**
      * Liefert alle Wählerstimmen, die zu einer Wahl mit der gegebenen ID gehören.
      * Wenn zu der ID keine Wahl existiert, wird ein leeres Array zurückgegeben.
-     * Das resultierende Array muss eine <b>tiefe Kopie</b> der Stimmen sein, 
-     * so dass eine Änderung der Werte außerhalb keinen Einfluss auf die Werte 
+     * Das resultierende Array muss eine <b>tiefe Kopie</b> der Stimmen sein,
+     * so dass eine Änderung der Werte außerhalb keinen Einfluss auf die Werte
      * dieses Datensatzes hat.
      *
      * @param electionId Die ID der Wahl.
      * @return Eine Kopie aller Stimmen der Wahl oder null, wenn die
-     * zugehörige Wahl nicht existiert. 
-     * 
+     * zugehörige Wahl nicht existiert.
+     *
      * @todo implementieren
      */
     public static int[][] getVotes(int electionId) {
+        if(isValidElectionId(electionId))
+        {
+            int[][] originalVotes = VOTES[electionId];
+            int[][] copiedVotes = new int[originalVotes.length][];
+            for(int i = 0; i < originalVotes.length; i++)
+            {
+                copiedVotes[i] = new int[originalVotes[i].length];
+                for(int j = 0; j < originalVotes[i].length; j++)
+                {
+                    copiedVotes[i][j] = originalVotes[i][j];
+                    //sollen doch mit clone arbeiten
+                }
+            }
+            return copiedVotes;
+        }
         return null;
     }
 }
