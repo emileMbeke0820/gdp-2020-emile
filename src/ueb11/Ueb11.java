@@ -6,14 +6,12 @@ public class Ueb11 {
         System.out.println(list.toString());
     }
 
-    private static void addFigures(List list, Figure[] figures, boolean writeLog) {
+    static void addFigures(List list, Figure[] figures) {
         System.out.println("Füge folgende Figuren zu: ");
 
         for (int i = 0; i < figures.length; i++) {
             Figure figure = figures[i];
-            if (writeLog) {
-                System.out.format("%2d. %s%n", i + 1, figure.toString());
-            }
+            System.out.format("%2d. %s\\n", i + 1, figure.toString());
             list.addElementInOrder(figure);
         }
 
@@ -56,7 +54,7 @@ public class Ueb11 {
                 new Square(new Color(Color.ColorNames.NAVY), 1.6)
         };
 
-        addFigures(list, figures, true);
+        addFigures(list, figures);
 
         System.out.println("------------------------------");
 
