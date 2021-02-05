@@ -1,4 +1,4 @@
-package ueb09;
+package ueb10;
 
 public class Element {
     private int value;
@@ -100,7 +100,9 @@ public class Element {
      * @return true, wenn kein Element folgt oder die folgenden Elemente jeweils keinen kleineren Wert enthalten als ihr Vorgänger
      */
     public boolean isSorted() {
-        return false;
+        if(next == null)
+            return true;
+        return value <= next.value && this.next.isSorted();
     }
 
     /**
@@ -109,6 +111,10 @@ public class Element {
      * @todo implementieren
      */
     boolean existsElement(int value) {
+        if(this.value == value)
+            return true;
+        if(next != null)
+            return next.existsElement(value);
         return false;
     }
 
@@ -138,9 +144,21 @@ public class Element {
      * @return der Wert an der Stelle index
      * @todo implementieren
      */
-    int getValueAt(int index) {
+   public  int getValueAt(int index) {
 
-        return 0;
+        if(index < this.size() && index >= 0)
+        {
+            if(index == 0)
+            {
+                return value;
+            }
+            else
+            {
+                return next.getValueAt(index - 1) ;
+            }
+
+        }
+        return Integer.MAX_VALUE;
     }
 
     /**
@@ -183,6 +201,18 @@ public class Element {
         node.setNext(this);
 
         return node;
-    }
 
+    }
+    public boolean isSame(Element elements) {
+        if (this.next == null && elements.next == null) {
+            if (this.value == elements.value){
+                return true;
+            }
+        } else if (this.next != null && elements.next != null){
+            if (this.value == elements.value){
+                return this.next.isSame(elements.next);
+            }
+        }
+        return false;
+    }
 }
